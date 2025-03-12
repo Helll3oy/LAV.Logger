@@ -72,9 +72,10 @@ namespace LAV.Logger
 
         protected LoggerBase(IJsonSerializer jsonSerializer, LogLevel level)
         {
-            _level = level;
+            UseAnsiColors = true;
+            Level = level;
+
             _jsonSerializer = jsonSerializer;
-            _useAnsiColors = true;
 
 #if WINDOWS
             if (_useAnsiColors) AnsiCodeEnabler.Enable();

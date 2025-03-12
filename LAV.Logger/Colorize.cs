@@ -30,8 +30,7 @@ namespace LAV.Logger
         public static string Gray(string text) => "\x1b[37m" + text + ColorEnd;
     }
 
-#if WINDOWS
-    internal static class AnsiCodeEnabler
+   internal static class AnsiCodeEnabler
     {
         [DllImport("kernel32.dll")]
         private static extern bool GetConsoleMode(IntPtr hConsoleHandle, out uint lpMode);
@@ -59,5 +58,4 @@ namespace LAV.Logger
             }
         }
     }
-#endif
 }
