@@ -140,25 +140,25 @@ namespace LAV.Logger
         public void Info(string message, params object[] data) => Info(null, message, data);
         public virtual void Info(Exception exception, string message, params object[] data)
         {
-            Log(LogLevel.Info, exception, message, data);
+            Log(LogLevel.Information, exception, message, data);
         }
 
         public Task InfoAsync(string message, params object[] data) => InfoAsync(null, message, data);
         public virtual async Task InfoAsync(Exception exception, string message, params object[] data)
         {
-            await LogAsync(LogLevel.Info, exception, message, data);
+            await LogAsync(LogLevel.Information, exception, message, data);
         }
 
         public void Warn(string message, params object[] data) => Warn(null, message, data);
         public virtual void Warn(Exception exception, string message, params object[] data)
         {
-            Log(LogLevel.Warn, exception, message, data);
+            Log(LogLevel.Warning, exception, message, data);
         }
 
         public Task WarnAsync(string message, params object[] data) => WarnAsync(null, message, data);
         public virtual async Task WarnAsync(Exception exception, string message, params object[] data)
         {
-            await LogAsync(LogLevel.Warn, exception, message, data);
+            await LogAsync(LogLevel.Warning, exception, message, data);
         }
 
         public void Error(string message, params object[] data) => Error(null, message, data);
@@ -176,13 +176,13 @@ namespace LAV.Logger
         public void Fatal(string message, params object[] data) => Fatal(null, message, data);
         public virtual void Fatal(Exception exception, string message, params object[] data)
         {
-            Log(LogLevel.Fatal, exception, message, data);
+            Log(LogLevel.Critical, exception, message, data);
         }
 
         public Task FatalAsync(string message, params object[] data) => FatalAsync(null, message, data);
         public virtual async Task FatalAsync(Exception exception, string message, params object[] data)
         {
-            await LogAsync(LogLevel.Fatal, exception, message, data);
+            await LogAsync(LogLevel.Critical, exception, message, data);
         }
     }
 }

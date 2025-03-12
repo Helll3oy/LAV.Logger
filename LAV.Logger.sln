@@ -7,6 +7,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "LAV.Logger", "LAV.Logger", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LAV.Logger", "LAV.Logger\LAV.Logger.csproj", "{833A61E6-9994-4801-BFBE-A32171DC4739}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExampleConsoleApp", "ExampleConsoleApp\ExampleConsoleApp.csproj", "{BE684722-5103-4128-9DCB-618D8946F90A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,6 +19,10 @@ Global
 		{833A61E6-9994-4801-BFBE-A32171DC4739}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{833A61E6-9994-4801-BFBE-A32171DC4739}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{833A61E6-9994-4801-BFBE-A32171DC4739}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE684722-5103-4128-9DCB-618D8946F90A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE684722-5103-4128-9DCB-618D8946F90A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE684722-5103-4128-9DCB-618D8946F90A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE684722-5103-4128-9DCB-618D8946F90A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

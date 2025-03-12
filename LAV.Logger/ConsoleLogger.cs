@@ -8,7 +8,7 @@ namespace LAV.Logger
 {
     public sealed class ConsoleLogger : LoggerBase
     {
-        public ConsoleLogger(IJsonSerializer jsonSerializer) : base(jsonSerializer)
+        public ConsoleLogger(IJsonSerializer jsonSerializer = null) : base(jsonSerializer)
         {
         }
 
@@ -18,10 +18,10 @@ namespace LAV.Logger
             {
                 LogLevel.Trace => ConsoleColor.Yellow,
                 LogLevel.Debug => ConsoleColor.DarkCyan,
-                LogLevel.Info => ConsoleColor.Green,
-                LogLevel.Warn => ConsoleColor.DarkYellow,
+                LogLevel.Information => ConsoleColor.Green,
+                LogLevel.Warning => ConsoleColor.DarkYellow,
                 LogLevel.Error => ConsoleColor.DarkRed,
-                LogLevel.Fatal => ConsoleColor.Black,
+                LogLevel.Critical => ConsoleColor.Black,
                 _ => ConsoleColor.White
             };
         }
@@ -35,7 +35,7 @@ namespace LAV.Logger
                 //LogLevel.Info => ConsoleColor.Green,
                 //LogLevel.Warn => ConsoleColor.DarkYellow,
                 //LogLevel.Error => ConsoleColor.Yellow,
-                LogLevel.Fatal => ConsoleColor.DarkRed,
+                LogLevel.Critical => ConsoleColor.DarkRed,
                 _ => ConsoleColor.Black
             };
         }
@@ -89,7 +89,7 @@ namespace LAV.Logger
 
         protected override async Task LogInternalAsync(LogLevel level, Exception exception, string message, params object[] data)
         {
-            await Task.Run(() => LogInternal(level, exception, message, data));
+            await Task.Run(() => LogInternal(level, exception, message, data)).ConfigureAwait(false);
         }
     }
 }
