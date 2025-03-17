@@ -48,7 +48,6 @@ namespace LAV.Logger
             }
 
             //_logger.Log(level.ToMicrosoftLogLevel(), eventId, exception, message, data);
-
         }
 
         protected override async Task LogInternalAsync(LogLevel level, EventId eventId, Exception exception, string message, params object[] data)

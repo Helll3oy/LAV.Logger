@@ -71,22 +71,28 @@ namespace LAV.Logger
             switch (level)
             {
                 case LogLevel.Trace:
-                    Console.WriteLine(LoggerTemplates.TRACE_FORMAT_ANSI, DateTime.Now, message);
+                    Console.Write(LoggerTemplates.TRACE_FORMAT_ANSI, DateTime.Now);
+                    Console.WriteLine(message, data);
                     break;
                 case LogLevel.Debug:
-                    Console.WriteLine(LoggerTemplates.DEBUG_FORMAT_ANSI, DateTime.Now, message);
+                    Console.Write(LoggerTemplates.DEBUG_FORMAT_ANSI, DateTime.Now);
+                    Console.WriteLine(message, data);
                     break;
                 case LogLevel.Information:
-                    Console.WriteLine(LoggerTemplates.INFO_FORMAT_ANSI, DateTime.Now, message);
+                    Console.Write(LoggerTemplates.INFO_FORMAT_ANSI, DateTime.Now);
+                    Console.WriteLine(message, data);
                     break;
                 case LogLevel.Warning:
-                    Console.WriteLine(LoggerTemplates.WARN_FORMAT_ANSI, DateTime.Now, message);
+                    Console.Write(LoggerTemplates.WARN_FORMAT_ANSI, DateTime.Now);
+                    Console.WriteLine(message, data);
                     break;
                 case LogLevel.Error:
-                    Console.WriteLine(LoggerTemplates.ERROR_FORMAT_ANSI, DateTime.Now, message);
+                    Console.Write(LoggerTemplates.ERROR_FORMAT_ANSI, DateTime.Now);
+                    Console.WriteLine(message, data);
                     break;
                 case LogLevel.Critical:
-                    Console.WriteLine(LoggerTemplates.FATAL_FORMAT_ANSI, DateTime.Now, message);
+                    Console.Write(LoggerTemplates.FATAL_FORMAT_ANSI, DateTime.Now);
+                    Console.WriteLine(message, data);
                     break;
                 default:
                     Console.WriteLine(message);
