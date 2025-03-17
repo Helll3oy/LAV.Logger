@@ -40,7 +40,7 @@ namespace LAV.Logger
             };
         }
 
-        protected override void LogInternal(LogLevel level, Exception exception, string message, params object[] data)
+        protected override void LogInternal(LogLevel level, EventId eventId, Exception exception, string message, params object[] data)
         {
             var foregroundColor = Console.ForegroundColor;
             var backgroundColor = Console.BackgroundColor;
@@ -87,9 +87,9 @@ namespace LAV.Logger
             Console.BackgroundColor = backgroundColor;
         }
 
-        protected override async Task LogInternalAsync(LogLevel level, Exception exception, string message, params object[] data)
+        protected override async Task LogInternalAsync(LogLevel level, EventId eventId, Exception exception, string message, params object[] data)
         {
-            await Task.Run(() => LogInternal(level, exception, message, data)).ConfigureAwait(false);
+            await Task.Run(() => LogInternal(level, eventId, exception, message, data)).ConfigureAwait(false);
         }
     }
 }

@@ -1,0 +1,45 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>netstandard2.0</TargetFramework>
+		<LangVersion>latest</LangVersion>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>		
+		<NoWarn>RS1042;RS1035</NoWarn>
+
+		<EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
+		<GenerateDocumentationFile>false</GenerateDocumentationFile>
+		<IsRoslynComponent>true</IsRoslynComponent>
+
+		<!-- Generates a package at build -->
+		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+
+		<!-- Do not include the generator as a lib dependency -->
+		<IncludeBuildOutput>false</IncludeBuildOutput>
+	</PropertyGroup>
+	
+	
+	<ItemGroup Condition="(
+			   '$(TargetFramework)' == 'net452')">
+		<PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="1.3.2" PrivateAssets="All"/>
+		<PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.11.0" PrivateAssets="All"/>
+	</ItemGroup>
+	
+	<ItemGroup Condition="(
+			   '$(TargetFramework)' == 'netstandard2.0' or 
+			   '$(TargetFramework)' == 'net9.0')">
+		<PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.13.0" PrivateAssets="All"/>
+		<PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.11.0" PrivateAssets="All"/>
+	</ItemGroup>
+
+	<!-- This ensures the library will be packaged as a source generator when we use `dotnet pack` -->
+	<ItemGroup>
+		<None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+	</ItemGroup>
+	
+<!--
+	<ItemGroup>
+		<PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.13.0" />
+		<PackageReference Include="Microsoft.CodeAnalysis.Analyzers" Version="3.11.0" />
+	</ItemGroup>-->
+</Project>

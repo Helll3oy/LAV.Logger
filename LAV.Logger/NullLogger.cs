@@ -19,25 +19,25 @@ namespace LAV.Logger
         {
         }
 
-        public override void Trace(Exception exception, string message, params object[] data) { }
-        public override Task TraceAsync(Exception exception, string message, params object[] data) => default;
+        public override void LogTrace(EventId eventId, Exception exception, string message, params object[] data) { }
+        public override Task LogTraceAsync(EventId eventId, Exception exception, string message, params object[] data) => default;
 
-        public override void Debug(Exception exception, string message, params object[] data) { }
-        public override Task DebugAsync(Exception exception, string message, params object[] data) => default;
+        public override void LogDebug(EventId eventId, Exception exception, string message, params object[] data) { }
+        public override Task LogDebugAsync(EventId eventId, Exception exception, string message, params object[] data) => default;
 
-        public override void Info(Exception exception, string message, params object[] data) { }
-        public override Task InfoAsync(Exception exception, string message, params object[] data) => default;
+        public override void LogInformation(EventId eventId, Exception exception, string message, params object[] data) { }
+        public override Task LogInformationAsync(EventId eventId, Exception exception, string message, params object[] data) => default;
 
-        public override void Warn(Exception exception, string message, params object[] data) { }
-        public override Task WarnAsync(Exception exception, string message, params object[] data) => default;
+        public override void LogWarning(EventId eventId, Exception exception, string message, params object[] data) { }
+        public override Task LogWarningAsync(EventId eventId, Exception exception, string message, params object[] data) => default;
 
-        public override void Fatal(Exception exception, string message, params object[] data) { }
-        public override Task FatalAsync(Exception exception, string message, params object[] data) => default;
+        public override void LogCritical(EventId eventId, Exception exception, string message, params object[] data) { }
+        public override Task LogCriticalAsync(EventId eventId, Exception exception, string message, params object[] data) => default;
 
-        public override void Error(Exception exception, string message, params object[] data) { }
-        public override Task ErrorAsync(Exception exception, string message, params object[] data) => default;
+        public override void LogError(EventId eventId, Exception exception, string message, params object[] data) { }
+        public override Task LogErrorAsync(EventId eventId, Exception exception, string message, params object[] data) => default;
 
-        protected override void LogInternal(LogLevel level, Exception exception, string message, params object[] data) { }
-        protected override Task LogInternalAsync(LogLevel level, Exception exception, string message, params object[] data) => default;
+        protected override void LogInternal(LogLevel level, EventId eventId, Exception exception, string message, params object[] data) { }
+        protected override Task LogInternalAsync(LogLevel level, EventId eventId, Exception exception, string message, params object[] data) => default;
     }
 }
