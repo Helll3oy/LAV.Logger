@@ -11,8 +11,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExampleConsoleApp", "Exampl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoggerTemplateGenerator", "LoggerTemplateGenerator\LoggerTemplateGenerator.csproj", "{71614974-CD89-4526-8405-357D26ED9366}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LAV.AnsiConsole", "LAV.AnsiConsole\LAV.AnsiConsole.csproj", "{79817F7C-96C3-4569-AAF8-E0C03DB156EE}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,10 +29,6 @@ Global
 		{71614974-CD89-4526-8405-357D26ED9366}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{71614974-CD89-4526-8405-357D26ED9366}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{71614974-CD89-4526-8405-357D26ED9366}.Release|Any CPU.Build.0 = Release|Any CPU
-		{79817F7C-96C3-4569-AAF8-E0C03DB156EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{79817F7C-96C3-4569-AAF8-E0C03DB156EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{79817F7C-96C3-4569-AAF8-E0C03DB156EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{79817F7C-96C3-4569-AAF8-E0C03DB156EE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -42,7 +36,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{833A61E6-9994-4801-BFBE-A32171DC4739} = {36D591C7-65C7-A0D1-1CBC-10CDE441BDC8}
 		{71614974-CD89-4526-8405-357D26ED9366} = {36D591C7-65C7-A0D1-1CBC-10CDE441BDC8}
-		{79817F7C-96C3-4569-AAF8-E0C03DB156EE} = {36D591C7-65C7-A0D1-1CBC-10CDE441BDC8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {862EA703-9238-4D67-8CB4-470B391C6064}
