@@ -1,18 +1,131 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFrameworks>net8.0;net9.0</TargetFrameworks>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>net9.0</TargetFramework>
+		<LangVersion>latest</LangVersion>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.Logging" Version="9.0.3" />
-  </ItemGroup>
+		<EmitCompilerGeneratedFiles>true</EmitCompilerGeneratedFiles>
+		<CompilerGeneratedFilesOutputPath>$(IntermediateOutputPath)</CompilerGeneratedFilesOutputPath>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\LAV.Logger\LAV.Logger.csproj" />
-  </ItemGroup>
+	
+	<!--
+	<Target Name="CleanRenamedFiles" BeforeTargets="Clean">
+		<ItemGroup>
+			<FilesToDelete Include="$(IntermediateOutputPath)*.props" />
+			<FilesToDelete Include="$(IntermediateOutputPath)*.targets" />
+			<FilesToDelete Include="$(IntermediateOutputPath)*.mc" />
+		</ItemGroup>
+		<Delete Files="@(FilesToDelete)" />
+	</Target>
+	-->
 
+	<Target Name="FixExtensions" 
+			BeforeTargets="CoreCompile"
+			AfterTargets="GenerateMSBuildEditorConfigFile">
+		<ItemGroup>
+			<FilesToFix Include="$(IntermediateOutputPath)*.props.cs;$(IntermediateOutputPath)*.targets.cs;$(IntermediateOutputPath)*.mc.cs" />		
+		</ItemGroup>
+
+		<ItemGroup>
+			<GeneratedPropsFiles Include="$(CompilerGeneratedFilesOutputPath)/**/*.props.cs" />
+			<GeneratedTargetsFiles Include="$(CompilerGeneratedFilesOutputPath)/**/*.targets.cs" />
+			<GeneratedMcFiles Include="$(CompilerGeneratedFilesOutputPath)/**/*.mc.cs" />
+			<GeneratedResxFiles Include="$(CompilerGeneratedFilesOutputPath)/**/*.resx.cs" />
+		</ItemGroup>
+
+		<!-- Use MSBuild's built-in File.WriteAllText -->
+		<WriteLinesToFile
+		  File="$(IntermediateOutputPath)fix_extensions.bat"
+		  Lines="@ECHO OFF
+           @FOR %%F IN (%(FilesToFix.Identity)) DO (
+             RENAME %%F %%~nF
+           )"
+		  Overwrite="true" />
+
+		<Exec Command="$(IntermediateOutputPath)fix_extensions.bat" />
+	</Target>
+
+	<!--
+	<Target Name="CorrectGeneratedExtensions"
+			AfterTargets="GenerateBuildRuntimeConfigurationFiles"
+			BeforeTargets="CoreCompile">
+
+		<Message Text="About to compile with @(Compile) files..." Importance="high"/>
+		<ItemGroup>
+			<GeneratedPropsFiles Include="$(CompilerGeneratedFilesOutputPath)/**/*.props.cs" />
+			<GeneratedTargetsFiles Include="$(CompilerGeneratedFilesOutputPath)/**/*.targets.cs" />
+			<GeneratedMcFiles Include="$(CompilerGeneratedFilesOutputPath)/**/*.mc.cs" />
+		</ItemGroup>
+
+		<Copy SourceFiles="@(GeneratedPropsFiles)" DestinationFiles="@(GeneratedPropsFiles->'$(IntermediateOutputPath)%(Filename)')" OverwriteReadOnlyFiles="true" Condition="'@(GeneratedPropsFiles)' != ''" />
+		<Copy SourceFiles="@(GeneratedTargetsFiles)" DestinationFiles="@(GeneratedTargetsFiles->'$(IntermediateOutputPath)%(Filename)')" OverwriteReadOnlyFiles="true" Condition="'@(GeneratedTargetsFiles)' != ''" />
+		<Copy SourceFiles="@(GeneratedMcFiles)"
+			  DestinationFiles="@(GeneratedMcFiles->'$(IntermediateOutputPath)%(Filename)')"
+			  OverwriteReadOnlyFiles="true"
+			  Condition="'@(GeneratedMcFiles)' != ''" />
+		<Delete Files="@(GeneratedProps);@(GeneratedTargets);@(GeneratedMcFiles)" />
+
+	</Target>
+
+	<Target Name="CleanRenamedFiles"
+			AfterTargets="CorrectGeneratedExtensions"
+			BeforeTargets="CoreCompile">
+
+		<Message Text="GenerateBuildRuntimeConfigurationFiles..." Importance="high"/>
+
+		<ItemGroup>
+			<Compile Remove="$(CompilerGeneratedFilesOutputPath)/**/*.cs" />
+			<None Include="$(CompilerGeneratedFilesOutputPath)/**/*.props" />
+		</ItemGroup>
+	</Target>
+	-->
+	
+<!--
+	<Target Name="RemoveSourceGeneratedFiles" BeforeTargets="CoreCompile" AfterTargets="CorrectGeneratedExtensions">
+		<ItemGroup>
+			<Compile Remove="$(CompilerGeneratedFilesOutputPath)/**/*.cs" />
+		</ItemGroup>
+	</Target>
+
+	<ItemGroup>
+		<CompilerVisibleProperty Include="WindowsSdkDir" />
+		<CompilerVisibleProperty Include="VCToolsInstallDir" />
+	</ItemGroup>
+-->
+	
+	<!--
+	<ItemGroup>
+		<Compile Remove="$(CompilerGeneratedFilesOutputPath)/**/*.props.cs" />
+		<None Include="$(CompilerGeneratedFilesOutputPath)/**/*.props" />
+
+		<Compile Remove="$(CompilerGeneratedFilesOutputPath)/**/*.targets.cs" />
+		<None Include="$(CompilerGeneratedFilesOutputPath)/**/*.targets" />
+
+		<Compile Remove="$(CompilerGeneratedFilesOutputPath)/**/*.mc.cs" />
+
+		<Compile Remove="generated\**" />
+		<None Include="$(IntermediateOutputPath)/*.mc" />
+	</ItemGroup>
+	-->
+<!--
+	<ItemGroup>
+		<EmbeddedResource Remove="generated\**" />
+		<None Remove="generated\**" />
+		<Compile Remove="generated\**" />
+		<None Include="$(IntermediateOutputPath)/*.mc" />
+	</ItemGroup>
+-->
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Extensions.Logging" Version="9.0.3" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\LAV.Logger\LAV.Logger.csproj" />
+
+		<ProjectReference Include="..\LAV.Logger.SourceGenerators\LAV.Logger.SourceGenerators.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
+	</ItemGroup>
 </Project>

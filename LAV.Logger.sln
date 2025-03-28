@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExampleConsoleApp", "Exampl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoggerTemplateGenerator", "LoggerTemplateGenerator\LoggerTemplateGenerator.csproj", "{71614974-CD89-4526-8405-357D26ED9366}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LAV.Logger.SourceGenerators", "LAV.Logger.SourceGenerators\LAV.Logger.SourceGenerators.csproj", "{53842C10-8F13-4A00-AC06-E62943C7ED55}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +31,10 @@ Global
 		{71614974-CD89-4526-8405-357D26ED9366}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{71614974-CD89-4526-8405-357D26ED9366}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{71614974-CD89-4526-8405-357D26ED9366}.Release|Any CPU.Build.0 = Release|Any CPU
+		{53842C10-8F13-4A00-AC06-E62943C7ED55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53842C10-8F13-4A00-AC06-E62943C7ED55}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53842C10-8F13-4A00-AC06-E62943C7ED55}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53842C10-8F13-4A00-AC06-E62943C7ED55}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

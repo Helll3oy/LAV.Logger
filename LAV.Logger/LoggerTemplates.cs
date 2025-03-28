@@ -5,6 +5,28 @@ namespace LAV.Logger
 {
     public static partial class LoggerTemplates
     {
+        public static string GetLogLevelString(Microsoft.Extensions.Logging.LogLevel logLevel) => logLevel switch
+        {
+            Microsoft.Extensions.Logging.LogLevel.Trace => TRACE_FORMAT,
+            Microsoft.Extensions.Logging.LogLevel.Debug => DEBUG_FORMAT,
+            Microsoft.Extensions.Logging.LogLevel.Information => INFO_FORMAT,
+            Microsoft.Extensions.Logging.LogLevel.Warning => WARN_FORMAT,
+            Microsoft.Extensions.Logging.LogLevel.Error => ERROR_FORMAT,
+            Microsoft.Extensions.Logging.LogLevel.Critical => FATAL_FORMAT,
+            _ => "unkn",
+        };
+
+        public static string GetLogLevelAnsiString(Microsoft.Extensions.Logging.LogLevel logLevel) => logLevel switch
+        {
+            Microsoft.Extensions.Logging.LogLevel.Trace => TRACE_FORMAT_ANSI,
+            Microsoft.Extensions.Logging.LogLevel.Debug => DEBUG_FORMAT_ANSI,
+            Microsoft.Extensions.Logging.LogLevel.Information => INFO_FORMAT_ANSI,
+            Microsoft.Extensions.Logging.LogLevel.Warning => WARN_FORMAT_ANSI,
+            Microsoft.Extensions.Logging.LogLevel.Error => ERROR_FORMAT_ANSI,
+            Microsoft.Extensions.Logging.LogLevel.Critical => FATAL_FORMAT_ANSI,
+            _ => "unkn",
+        };
+
         public const string TRACE_FORMAT = "[{0:yyyy-MM-dd HH:mm:ss.fff}] [TRCE] {1}";
         public const string TRACE_FORMAT_ANSI = "[48;2;0;0;0;38;2;147;112;219m[{0:yyyy-MM-dd HH:mm:ss.fff}][0m [[48;2;0;0;0;38;2;0;255;255mTRCE[0m] ";
         //public static readonly string TRACE_FORMAT_ANSI = LAV.AnsiConsole.AnsiConsole

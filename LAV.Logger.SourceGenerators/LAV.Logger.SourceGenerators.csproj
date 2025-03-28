@@ -1,0 +1,61 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>netstandard2.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+		<AnalyzerLanguage>cs</AnalyzerLanguage>
+		<DebugType>embedded</DebugType>
+		<IsPackable>false</IsPackable>
+		
+		<IsRoslynComponent>true</IsRoslynComponent>
+		<LangVersion>latest</LangVersion>
+
+		<EnforceExtendedAnalyzerRules>true</EnforceExtendedAnalyzerRules>
+		<!-- Generates a package at build -->
+		<GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+
+		<!-- Do not include the generator as a lib dependency -->
+		<IncludeBuildOutput>false</IncludeBuildOutput>
+	</PropertyGroup>
+
+	<!-- This ensures the library will be packaged as a source generator when we use `dotnet pack` -->
+	<ItemGroup>
+		<None Include="$(OutputPath)\$(AssemblyName).dll" Pack="true" PackagePath="analyzers/dotnet/cs" Visible="false" />
+	</ItemGroup>
+
+	<PropertyGroup>
+		<GetTargetPathDependsOn>$(GetTargetPathDependsOn);GetDependencyTargetPaths</GetTargetPathDependsOn>
+	</PropertyGroup>
+
+	<Target Name="GetDependencyTargetPaths">
+		<ItemGroup>
+			<!--<TargetPathWithTargetPlatformMoniker Include="$(PKGSystem_Data_SqlClient)\lib\net461\System.Data.SqlClient.dll" IncludeRuntimeDependency="false" />-->
+			<!--<TargetPathWithTargetPlatformMoniker Include="$(PKGCaseConverter)\lib\netstandard2.0\CaseConverter.dll" IncludeRuntimeDependency="false" />-->
+			<!--<TargetPathWithTargetPlatformMoniker Include="$(PKGSystem_Xml_XDocument)\lib\netstandard1.3\System.Xml.XDocument.dll" IncludeRuntimeDependency="false" />-->
+			<!--<TargetPathWithTargetPlatformMoniker Include="$(PKGSystem_Xml_XmlSerializer)\lib\netstandard1.3\System.Xml.XmlSerializer.dll" IncludeRuntimeDependency="false" />-->
+			<TargetPathWithTargetPlatformMoniker Include="$(PKGMicrosoft_Win32_Registry)\lib\netstandard2.0\Microsoft.Win32.Registry.dll" IncludeRuntimeDependency="false" />
+		</ItemGroup>
+	</Target>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.CodeAnalysis.CSharp" Version="4.13.0" PrivateAssets="all" />
+		<PackageReference Include="Microsoft.Win32.Registry" Version="5.0.0" GeneratePathProperty="true" PrivateAssets="All" />
+		
+		<ProjectReference Include="..\LAV.Logger\LAV.Logger.csproj" />
+	</ItemGroup>
+
+	<Import Project="$(MSBuildProjectName).targets" />
+
+	<ItemGroup>
+		<None Remove="AnalyzerReleases.Shipped.md" />
+		<None Remove="AnalyzerReleases.Unshipped.md" />
+		<None Remove="bin\Debug\netstandard2.0\\LAV.Logger.SourceGenerators.dll" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<AdditionalFiles Include="AnalyzerReleases.Shipped.md" />
+		<AdditionalFiles Include="AnalyzerReleases.Unshipped.md" />
+	</ItemGroup>
+
+</Project>
